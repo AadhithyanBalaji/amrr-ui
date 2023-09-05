@@ -72,21 +72,11 @@ export class AmrrReportFiltersFormService {
     this.apiBusinessService
       .post('stock/filtersData', filters)
       .subscribe((filterData: any) => {
-        this.godowns = this.addAllOption(
-          JSON.parse(filterData?.output?.Godowns) ?? []
-        );
-        this.bays = this.addAllOption(
-          JSON.parse(filterData?.output?.Bays) ?? []
-        );
-        this.itemGroups = this.addAllOption(
-          JSON.parse(filterData?.output?.ItemGroups) ?? []
-        );
-        this.items = this.addAllOption(
-          JSON.parse(filterData?.output?.Items) ?? []
-        );
-        // this.batches = this.addAllOption(
-        //   JSON.parse(filterData?.output?.Batches) ?? []
-        // );
+        this.godowns = this.addAllOption(filterData?.godowns);
+        this.bays = this.addAllOption(filterData?.bays);
+        this.itemGroups = this.addAllOption(filterData?.itemGroups);
+        this.items = this.addAllOption(filterData?.items);
+
         if (isFirstTime) {
           const today = new Date();
           this.form = new FormGroup({
